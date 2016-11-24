@@ -1,59 +1,82 @@
-factory = 0
-transport = 0
-artificial_variable = False
-matrix = []
-offer = []
-capacity = []
+import north_west
 
 
-def read_inputs():
-    print('Número de fábricas: ')
-    global factory
-    factory = int(input())
+class Main(object):
 
-    print('Número de transportes: ')
-    global transport
-    transport = int(input())
+    def __init__(self):
+        self.factory = 0
+        self.transport = 0
+        self.artificial_variable = False
+        self.matrix = []
+        self.matrix_result = []
+        self.offer = []
+        self.capacity = []
+        self.minZ = 0
 
-    for i in range(factory):
-        print('Insira a oferta da fábrica {}'.format(i))
-        global offer
-        offer.append(int(input()))
+        # read_inputs()
+        # initialize_matrix_result
+        # initialize_matrix
+        self.test()
 
-    for j in range(transport):
-        print('Insira a capacidade de escoamento do transporte {}'.format(j))
-        global capacity
-        capacity.append(int(input()))
+        print('Matriz: ')
+        print(self.matrix)
 
-    total_offer = sum(offer)
-    total_capacity = sum(capacity)
+        print('Oferta: ')
+        print(self.offer)
 
-    if total_offer < total_capacity:
-        global artificial_variable
-        offer.append(total_capacity - total_offer)
-        artificial_variable = True
-        factory += 1
+        print('Capacidade: ')
+        print(self.capacity)
 
-read_inputs()
+        self.minZ = north_west.NorthWest(self.matrix, self.matrix_result, self.offer, self.capacity).calculateMinZ()
+        print('minZ: ')
+        print(self.minZ)
 
-# initialize matrix
-for x in range(factory):
-    row = []
-    if artificial_variable and (x == factory - 1):
-        for y in range(transport):
-            row.append(0)
-    else:
-        print('Insira os custos da linha {}'.format(x))
-        for y in range(transport):
-            row.append(int(input()))
+    def test(self):
+        self.factory = 3
+        self.transport = 3
+        self.artificial_variable = False
+        self.matrix = [[6, 4, 3], [5, 6, 1], [0, 0, 0]]
+        self.matrix_result = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        self.offer = [180, 120, 20]
+        self.capacity = [190, 100, 30]
+        self.minZ = 0
 
-    matrix.append(row)
+    def read_inputs(self):
+        print('Número de fábricas: ')
+        self.factory = int(input())
 
-print('Matriz: ')
-print(matrix)
+        print('Número de transportes: ')
+        self.transport = int(input())
 
-print('Oferta: ')
-print(offer)
+        for i in range(self.factory):
+            print('Insira a oferta da fábrica {}'.format(i))
+            self.offer.append(int(input()))
 
-print('Capacidade: ')
-print(capacity)
+        for j in range(self.transport):
+            print('Insira a capacidade de escoamento do transporte {}'.format(j))
+            self.capacity.append(int(input()))
+
+        total_offer = sum(self.offer)
+        total_capacity = sum(self.capacity)
+
+        if total_offer < total_capacity:
+            self.offer.append(total_capacity - total_offer)
+            self.artificial_variable = True
+            self.factory += 1
+
+    def initialize_matrix_result(self):
+        self.matrix_result = [x[:] for x in [[0] * self.transport] * self.factory]
+
+    def initialize_matrix(self):
+        for x in range(self.factory):
+            row = []
+            if self.artificial_variable and (x == self.factory - 1):
+                for y in range(self.transport):
+                    row.append(0)
+            else:
+                print('Insira os custos da linha {}'.format(x))
+                for y in range(self.transport):
+                    row.append(int(input()))
+                    self.matrix.append(row)
+
+Main()
