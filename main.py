@@ -13,9 +13,9 @@ class Main(object):
         self.capacity = []
         self.minZ = 0
 
-        # read_inputs()
-        # initialize_matrix_result
-        # initialize_matrix
+        # self.read_inputs()
+        # self.initialize_matrix_result()
+        # self.initialize_matrix()
         self.test()
 
         print('Matriz: ')
@@ -40,6 +40,15 @@ class Main(object):
         self.offer = [180, 120, 20]
         self.capacity = [190, 100, 30]
         self.minZ = 0
+
+        # self.factory = 3
+        # self.transport = 4
+        # self.artificial_variable = False
+        # self.matrix = [[1, 2, 3, 4], [4, 3, 2, 4], [0, 2, 2, 1]]
+        # self.matrix_result = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+        # self.offer = [6, 8, 10]
+        # self.capacity = [4, 7, 6, 7]
+        # self.minZ = 0
 
     def read_inputs(self):
         print('Número de fábricas: ')
@@ -77,6 +86,7 @@ class Main(object):
                 print('Insira os custos da linha {}'.format(x))
                 for y in range(self.transport):
                     row.append(int(input()))
-                    self.matrix.append(row)
+
+            self.matrix.append(row)
 
 Main()
