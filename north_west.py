@@ -29,7 +29,7 @@ class NorthWest(object):
         self.north_west()
 
         for x in range(len(self.matrix)):
-            for y in range(len(self.matrix)):
+            for y in range(len(self.matrix[0])):
                 self.minZ += (self.matrix[x][y] * self.matrix_result[x][y])
 
         return self.minZ
