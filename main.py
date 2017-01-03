@@ -13,10 +13,22 @@ class Main(object):
         self.capacity = []
         self.minZ = 0
 
-        # self.read_inputs()
-        # self.initialize_matrix_result()
-        # self.initialize_matrix()
-        self.test()
+        print('Opções: ')
+        print('1 - Digitar os dados.')
+        print('2 - Executar exemplo 1.')
+        print('3 - Executar exemplo 2.')
+        option = int(input())
+
+        if option == 1:
+            self.read_inputs()
+            self.initialize_matrix_result()
+            self.initialize_matrix()
+        elif option == 2:
+            self.test1()
+        elif option == 3:
+            self.test2()
+        else:
+            print('Opção inválida!')
 
         print('Matriz: ')
         print(self.matrix)
@@ -31,7 +43,7 @@ class Main(object):
         print('minZ: ')
         print(self.minZ)
 
-    def test(self):
+    def test1(self):
         self.factory = 3
         self.transport = 3
         self.artificial_variable = False
@@ -41,14 +53,15 @@ class Main(object):
         self.capacity = [190, 100, 30]
         self.minZ = 0
 
-        # self.factory = 3
-        # self.transport = 4
-        # self.artificial_variable = False
-        # self.matrix = [[1, 2, 3, 4], [4, 3, 2, 4], [0, 2, 2, 1]]
-        # self.matrix_result = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
-        # self.offer = [6, 8, 10]
-        # self.capacity = [4, 7, 6, 7]
-        # self.minZ = 0
+    def test2(self):
+        self.factory = 3
+        self.transport = 4
+        self.artificial_variable = False
+        self.matrix = [[1, 2, 3, 4], [4, 3, 2, 4], [0, 2, 2, 1]]
+        self.matrix_result = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+        self.offer = [6, 8, 10]
+        self.capacity = [4, 7, 6, 7]
+        self.minZ = 0
 
     def read_inputs(self):
         print('Número de fábricas: ')
